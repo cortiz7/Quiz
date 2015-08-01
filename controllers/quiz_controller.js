@@ -74,7 +74,7 @@ exports.edit = function(req, res) {
 exports.update = function(req, res) {  
   req.quiz.pregunta = req.body.quiz.pregunta;
   req.quiz.respuesta = req.body.quiz.respuesta;
-  console.log(req.quiz.pregunta + ' ' + req.quiz.respuesta);
+    
   req.quiz
   .validate()
   .then(
@@ -88,4 +88,10 @@ exports.update = function(req, res) {
       }      
     }
   );
+};
+
+exports.destroy = function(req, res) {
+	req.quiz.destroy().then(function() {
+		res.redirect('/quizes');
+	}).catch(function(error) {next(error);});
 };
